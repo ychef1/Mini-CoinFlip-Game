@@ -1,0 +1,57 @@
+import java.util.Random;
+
+public class CoinFlipGame {
+  private static final Random random = new Random();
+
+  private int playerScore;
+  private int computerScore;
+
+  public CoinFlipGame() {
+    playerScore = 0;
+    computerScore = 0;
+  }
+
+  public void playRound() {
+    String playerChoice = getPlayerChoice();
+    String computerChoice = flipCoin();
+
+    System.out.println("Player chose: " + playerChoice);
+    System.out.println("Computer chose: " + computerChoice);
+
+    if (playerChoice.equalsIgnoreCase(computerChoice)) {
+      System.out.println("It's a match! Player wins!");
+      playerScore++;
+    } else {
+      System.out.println("Sorry, not a match. Computer wins!");
+      computerScore++;
+    }
+
+    System.out.println("Player score: " + playerScore);
+    System.out.println("Computer score: " + computerScore);
+  }
+
+  private String getPlayerChoice() {
+    System.out.println("Heads or Tails? (Enter 'H' for Heads, 'T' for Tails)");
+    String choice = System.console().readLine();
+
+    while (!choice.equalsIgnoreCase("H") && !choice.equalsIgnoreCase("T")) {
+      System.out.println("Invalid choice. Please enter 'H' for Heads or 'T' for Tails.");
+      choice = System.console().readLine();
+    }
+
+    return choice.equalsIgnoreCase("H") ? "Heads" : "Tails";
+  }
+
+  private String flipCoin() {
+    int randomNum = random.nextInt(2);
+    return (randomNum == 0) ? "Heads" : "Tails";
+  }
+
+  public int getPlayerScore() {
+    return playerScore;
+  }
+
+  public int getComputerScore() {
+    return computerScore;
+  }
+}
