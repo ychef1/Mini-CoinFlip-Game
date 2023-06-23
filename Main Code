@@ -1,0 +1,20 @@
+public class Main {
+  public static void main(String[] args) {
+    CoinFlipGame game = new CoinFlipGame();
+
+    System.out.println("Welcome to the Heads or Tails game!");
+    System.out.println("Let's start flipping coins...");
+
+    String playAgain;
+
+    do {
+      game.playRound();
+      System.out.println("Do you want to play again? (Enter 'Y' for Yes, 'N' for No)");
+      playAgain = System.console().readLine();
+    } while (playAgain.equalsIgnoreCase("Y"));
+
+    System.out.println("Thanks for playing! Final scores:");
+    System.out.println("Player score: " + game.getPlayerScore());
+    System.out.println("Computer score: " + game.getComputerScore());
+  }
+}
